@@ -1,0 +1,702 @@
+// ==========================================================================
+// CampaignDetail.scss
+// Scoped styles for the CampaignDetail page (all classes prefixed "cd-")
+// Theme: White + Blue — elevated, production-grade visual treatment
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-primary-soft: rgba(102, 126, 234, 0.08);
+$color-bg-light: #f7fafc;
+$color-bg-page: #f4f6fb;
+
+$color-text: #1a202c;
+$color-text-muted: #64748b;
+$color-text-faint: #94a3b8;
+$color-border: #e6eaf1;
+$color-border-soft: #eef1f7;
+
+$color-success: #38a169;
+$color-warning: #dd6b20;
+$color-danger: #e53e3e;
+$color-danger-hover: #c53030;
+$color-neutral: #718096;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+
+@mixin elevation-1 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+@mixin elevation-2 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 10px 28px rgba(102, 126, 234, 0.1);
+}
+
+@mixin elevation-3 {
+    box-shadow:
+        0 8px 16px rgba(15, 23, 42, 0.06),
+        0 24px 48px rgba(102, 126, 234, 0.14);
+}
+
+.cd-main {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: $font-body;
+    color: $color-text;
+    background-color: $color-bg-page;
+    padding: 28px 24px 72px;
+    overflow-x: hidden;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+.cd-backBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-text-muted;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-sm;
+    padding: 8px 14px;
+    margin-bottom: 18px;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+
+    &:hover {
+        color: $color-primary;
+        background-color: $color-primary-soft;
+        border-color: rgba(102, 126, 234, 0.3);
+    }
+}
+
+.cd-card {
+    width: 100%;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-2;
+    padding: 32px;
+}
+
+// ---------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------
+.cd-headerRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.cd-title {
+    font-family: $font-heading;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: $color-black;
+    margin: 0;
+    word-break: break-word;
+}
+
+.cd-statusBadge {
+    display: inline-flex;
+    align-items: center;
+    font-family: $font-heading;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 5px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+
+    &.cd-status--draft {
+        color: $color-neutral;
+        background-color: rgba(113, 128, 150, 0.12);
+    }
+
+    &.cd-status--sending {
+        color: $color-warning;
+        background-color: rgba(221, 107, 32, 0.12);
+    }
+
+    &.cd-status--sent {
+        color: $color-success;
+        background-color: rgba(56, 161, 105, 0.12);
+    }
+
+    &.cd-status--failed {
+        color: $color-danger;
+        background-color: rgba(229, 62, 62, 0.12);
+    }
+
+    &.cd-status--default {
+        color: $color-primary;
+        background-color: $color-primary-soft;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Meta grid
+// ---------------------------------------------------------------------
+.cd-metaGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-md;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+}
+
+.cd-metaItem {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    font-size: 13.5px;
+}
+
+.cd-metaLabel {
+    font-family: $font-heading;
+    font-weight: 600;
+    color: $color-text-muted;
+    min-width: 80px;
+}
+
+.cd-metaValue {
+    color: $color-text;
+    word-break: break-word;
+}
+
+// ---------------------------------------------------------------------
+// Section title (shared)
+// ---------------------------------------------------------------------
+.cd-sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0 0 12px;
+
+    svg {
+        color: $color-primary;
+        font-size: 13px;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Email preview
+// ---------------------------------------------------------------------
+.cd-previewSection {
+    margin-bottom: 24px;
+}
+
+.cd-previewFrame {
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-md;
+    padding: 18px;
+    max-height: 420px;
+    overflow: auto;
+    color: $color-text;
+    font-size: 14px;
+    line-height: 1.5;
+    @include elevation-1;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Preflight checklist
+// ---------------------------------------------------------------------
+.cd-preflightSection {
+    margin-bottom: 24px;
+}
+
+.cd-preflightList {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cd-preflightItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-sm;
+    padding: 9px 12px;
+    text-transform: capitalize;
+
+    svg {
+        flex-shrink: 0;
+        font-size: 14px;
+    }
+
+    &.cd-preflightItem--pass svg {
+        color: $color-success;
+    }
+
+    &.cd-preflightItem--fail svg {
+        color: $color-danger;
+    }
+}
+
+.cd-readyStatus {
+    font-size: 13.5px;
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: $radius-sm;
+
+    strong {
+        font-family: $font-heading;
+    }
+
+    &.cd-readyStatus--yes {
+        color: $color-success;
+        background-color: rgba(56, 161, 105, 0.1);
+    }
+
+    &.cd-readyStatus--no {
+        color: $color-danger;
+        background-color: rgba(229, 62, 62, 0.1);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Draft actions
+// ---------------------------------------------------------------------
+.cd-draftActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cd-sendBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 2 1 200px;
+    font-family: $font-heading;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary 0%, #7c6cf0 55%, #764ba2 100%);
+    border: none;
+    border-radius: $radius-md;
+    padding: 13px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.32);
+    transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast;
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 8px 22px rgba(102, 126, 234, 0.4);
+        transform: translateY(-1px);
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+}
+
+.cd-deleteBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1 1 150px;
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-danger;
+    background-color: $color-white;
+    border: 1.5px solid rgba(229, 62, 62, 0.35);
+    border-radius: $radius-md;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+
+    &:hover:not(:disabled) {
+        background-color: rgba(229, 62, 62, 0.08);
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+    }
+}
+
+.cd-cancelBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    font-family: $font-heading;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $color-warning;
+    background-color: rgba(221, 107, 32, 0.08);
+    border: 1.5px solid rgba(221, 107, 32, 0.3);
+    border-radius: $radius-md;
+    padding: 13px 20px;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+
+    &:hover:not(:disabled) {
+        background-color: rgba(221, 107, 32, 0.16);
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Statistics
+// ---------------------------------------------------------------------
+.cd-statsSection {
+    margin-top: 8px;
+}
+
+.cd-statsHeaderRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.cd-viewRecipientsBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: $font-heading;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-sm;
+    padding: 7px 13px;
+    text-decoration: none;
+    transition: background-color $transition-fast;
+
+    &:hover {
+        background-color: rgba(102, 126, 234, 0.16);
+    }
+}
+
+.cd-statsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.cd-statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-md;
+    padding: 16px 8px;
+    text-align: center;
+}
+
+.cd-statValue {
+    font-family: $font-heading;
+    font-size: 19px;
+    font-weight: 700;
+    color: $color-black;
+}
+
+.cd-statLabel {
+    font-size: 11px;
+    font-weight: 500;
+    color: $color-text-faint;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.cd-statItem--success .cd-statValue {
+    color: $color-success;
+}
+
+.cd-statItem--warning .cd-statValue {
+    color: $color-warning;
+}
+
+.cd-statItem--danger .cd-statValue {
+    color: $color-danger;
+}
+
+// ---------------------------------------------------------------------
+// Loading / Empty states
+// ---------------------------------------------------------------------
+.cd-loadingContainer,
+.cd-emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 480px;
+    margin: 60px auto 0;
+    padding: 60px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-1;
+}
+
+.cd-loadingSpinner {
+    width: 38px;
+    height: 38px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: cd-spin 0.8s linear infinite;
+}
+
+@keyframes cd-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.cd-emptyIcon {
+    font-size: 26px;
+    color: $color-danger;
+    opacity: 0.7;
+}
+
+// ---------------------------------------------------------------------
+// Confirmation dialogs
+// ---------------------------------------------------------------------
+.cd-confirmOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1100;
+    animation: cd-overlayIn 0.18s ease-out;
+}
+
+@keyframes cd-overlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.cd-confirmDialog {
+    width: 100%;
+    max-width: 400px;
+    background-color: $color-white;
+    border-radius: $radius-lg;
+    padding: 28px;
+    text-align: center;
+    @include elevation-3;
+    animation: cd-modalIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
+    h3 {
+        font-family: $font-heading;
+        font-size: 17px;
+        font-weight: 600;
+        color: $color-black;
+        margin: 6px 0 10px;
+    }
+
+    p {
+        font-size: 13.5px;
+        color: $color-text-muted;
+        line-height: 1.55;
+        margin: 0 0 22px;
+
+        strong {
+            color: $color-text;
+            word-break: break-word;
+        }
+    }
+}
+
+@keyframes cd-modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cd-confirmIcon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color-primary-soft;
+    color: $color-primary;
+    font-size: 18px;
+}
+
+.cd-confirmButtons {
+    display: flex;
+    gap: 10px;
+
+    button {
+        flex: 1;
+        font-family: $font-heading;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: $radius-md;
+        padding: 11px 16px;
+        cursor: pointer;
+        border: none;
+        transition: background-color $transition-fast, transform $transition-fast, opacity $transition-fast;
+
+        &:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.cd-confirmCancel {
+    background-color: $color-bg-light;
+    color: $color-text;
+    border: 1.5px solid $color-border !important;
+
+    &:hover:not(:disabled) {
+        background-color: $color-border;
+    }
+}
+
+.cd-confirmSend {
+    background: linear-gradient(135deg, $color-primary 0%, #7c6cf0 55%, #764ba2 100%);
+    color: $color-white;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 6px 18px rgba(102, 126, 234, 0.38);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Tablet
+// ---------------------------------------------------------------------
+@media (max-width: 768px) {
+    .cd-card {
+        padding: 26px 22px;
+    }
+
+    .cd-title {
+        font-size: 20px;
+    }
+
+    .cd-statsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile
+// ---------------------------------------------------------------------
+@media (max-width: 480px) {
+    .cd-main {
+        padding: 20px 14px 44px;
+    }
+
+    .cd-card {
+        padding: 22px 16px;
+        border-radius: $radius-md;
+    }
+
+    .cd-title {
+        font-size: 18px;
+    }
+
+    .cd-metaLabel {
+        min-width: 100%;
+    }
+
+    .cd-previewFrame {
+        padding: 14px;
+        max-height: 320px;
+    }
+
+    .cd-statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cd-statValue {
+        font-size: 17px;
+    }
+
+    .cd-confirmDialog {
+        padding: 22px 18px;
+    }
+}

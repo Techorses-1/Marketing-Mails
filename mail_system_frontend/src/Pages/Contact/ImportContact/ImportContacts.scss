@@ -1,0 +1,289 @@
+// ==========================================================================
+// ImportContacts.scss
+// Scoped styles for the ImportContacts embeddable form (all classes "ic-")
+// Theme: White + Blue — elevated, production-grade visual treatment
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-bg-light: #f7fafc;
+
+$color-text: #1a202c;
+$color-text-muted: #64748b;
+$color-text-faint: #94a3b8;
+$color-border: #e6eaf1;
+
+$color-success: #38a169;
+$color-warning: #dd6b20;
+$color-danger: #e53e3e;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+
+.ic-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: $color-white;
+    font-family: $font-body;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+.ic-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-heading;
+    font-size: 18px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0 0 6px;
+
+    svg {
+        color: $color-primary;
+        font-size: 16px;
+    }
+}
+
+.ic-subtitle {
+    font-size: 13.5px;
+    color: $color-text-muted;
+    margin: 0 0 16px;
+}
+
+.ic-templateBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: rgba(102, 126, 234, 0.08);
+    border: none;
+    border-radius: $radius-sm;
+    padding: 9px 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+
+    &:hover {
+        background-color: rgba(102, 126, 234, 0.16);
+    }
+}
+
+.ic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.ic-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ic-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-black;
+}
+
+// ---------------------------------------------------------------------
+// File drop / picker
+// ---------------------------------------------------------------------
+.ic-fileDrop {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    background-color: $color-bg-light;
+    border: 1.5px dashed $color-border;
+    border-radius: $radius-md;
+    padding: 28px 20px;
+    cursor: pointer;
+    transition: border-color $transition-fast, background-color $transition-fast;
+
+    &:hover {
+        border-color: $color-primary;
+        background-color: rgba(102, 126, 234, 0.05);
+    }
+}
+
+.ic-fileDropIcon {
+    font-size: 24px;
+    color: $color-primary;
+    margin-bottom: 4px;
+}
+
+.ic-fileDropText {
+    font-family: $font-body;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-text;
+    word-break: break-word;
+}
+
+.ic-fileDropHint {
+    font-size: 11.5px;
+    color: $color-text-faint;
+}
+
+.ic-fileInput {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ic-uploadBtn {
+    width: 100%;
+    font-family: $font-heading;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary 0%, #7c6cf0 55%, #764ba2 100%);
+    border: none;
+    border-radius: $radius-md;
+    padding: 12px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.32);
+    transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast;
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 8px 22px rgba(102, 126, 234, 0.4);
+        transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Import result summary
+// ---------------------------------------------------------------------
+.ic-result {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid $color-border;
+}
+
+.ic-resultTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0 0 14px;
+
+    svg {
+        color: $color-success;
+    }
+}
+
+.ic-resultGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.ic-resultItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 14px 8px;
+    text-align: center;
+}
+
+.ic-resultIcon {
+    font-size: 15px;
+    color: $color-primary;
+    margin-bottom: 2px;
+}
+
+.ic-resultValue {
+    font-family: $font-heading;
+    font-size: 18px;
+    font-weight: 700;
+    color: $color-black;
+}
+
+.ic-resultLabel {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: $color-text-faint;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.ic-resultItem--success {
+
+    .ic-resultIcon,
+    .ic-resultValue {
+        color: $color-success;
+    }
+}
+
+.ic-resultItem--warning {
+
+    .ic-resultIcon,
+    .ic-resultValue {
+        color: $color-warning;
+    }
+}
+
+.ic-resultItem--danger {
+
+    .ic-resultIcon,
+    .ic-resultValue {
+        color: $color-danger;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile
+// ---------------------------------------------------------------------
+@media (max-width: 480px) {
+    .ic-fileDrop {
+        padding: 22px 16px;
+    }
+
+    .ic-resultGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .ic-resultValue {
+        font-size: 16px;
+    }
+}

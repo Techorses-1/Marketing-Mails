@@ -1,0 +1,30 @@
+{
+  "name": "mail_system_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "amaan sodagar",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.1109.0",
+    "@aws-sdk/client-sesv2": "^3.1111.0",
+    "bcryptjs": "^3.0.3",
+    "bullmq": "^6.1.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "csv-parser": "^3.2.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "ioredis": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.9.1",
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.5",
+    "path": "^0.12.7",
+    "uuid": "^14.0.1",
+    "xlsx": "^0.18.5"
+  }
+}

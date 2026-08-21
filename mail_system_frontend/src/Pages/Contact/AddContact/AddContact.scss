@@ -1,0 +1,163 @@
+// ==========================================================================
+// AddContact.scss
+// Scoped styles for the AddContact embeddable form (all classes prefixed "ac-")
+// Theme: White + Blue — elevated, production-grade visual treatment
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-bg-light: #f7fafc;
+
+$color-text: #1a202c;
+$color-text-muted: #64748b;
+$color-border: #e6eaf1;
+$color-danger: #e53e3e;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+
+.ac-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: $color-white;
+    font-family: $font-body;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+.ac-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-heading;
+    font-size: 18px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0 0 6px;
+
+    svg {
+        color: $color-primary;
+        font-size: 16px;
+    }
+}
+
+.ac-subtitle {
+    font-size: 13.5px;
+    color: $color-text-muted;
+    margin: 0 0 22px;
+}
+
+.ac-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ac-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.ac-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ac-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-black;
+}
+
+.ac-input {
+    width: 100%;
+    font-family: $font-body;
+    font-size: 14px;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 11px 13px;
+    outline: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast, background-color $transition-fast;
+
+    &::placeholder {
+        color: #a0aec0;
+    }
+
+    &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.13);
+        background-color: $color-white;
+    }
+}
+
+.ac-error {
+    font-size: 12px;
+    color: $color-danger;
+    margin-top: 2px;
+}
+
+.ac-submitBtn {
+    width: 100%;
+    font-family: $font-heading;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary 0%, #7c6cf0 55%, #764ba2 100%);
+    border: none;
+    border-radius: $radius-md;
+    padding: 12px 20px;
+    margin-top: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.32);
+    transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast;
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 8px 22px rgba(102, 126, 234, 0.4);
+        transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile
+// ---------------------------------------------------------------------
+@media (max-width: 480px) {
+    .ac-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .ac-input {
+        font-size: 14px;
+    }
+
+    .ac-submitBtn {
+        font-size: 14px;
+        padding: 12px 18px;
+    }
+}

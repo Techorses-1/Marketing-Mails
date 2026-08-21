@@ -1,0 +1,215 @@
+// ==========================================================================
+// AuthForm.scss
+// Scoped styles for the AuthForm component (login / register)
+// Theme: White + Blue
+// Fonts: Inter (body), Rubik (headings), Poppins (fallback/utility)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-bg-light: #f7fafc;
+
+$color-primary-hover: #5468d4;
+$color-danger: #e53e3e;
+$color-danger-hover: #c53030;
+$color-text-muted: #4a5568;
+$color-border: #e2e8f0;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-md: 10px;
+$radius-lg: 16px;
+$transition-fast: 0.2s ease-in-out;
+
+.authForm {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-bg-light;
+    font-family: $font-body;
+    // No left/right padding on the outer wrapper — vertical only,
+    // to avoid horizontal scroll on desktop/mobile.
+    padding: 32px 0;
+    overflow-x: hidden;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    &__card {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 16px;
+        background-color: $color-white;
+        border-radius: $radius-lg;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.12);
+        padding: 40px 32px;
+    }
+
+    &__title {
+        font-family: $font-heading;
+        font-size: 28px;
+        font-weight: 600;
+        color: $color-black;
+        margin: 0 0 8px;
+        text-align: center;
+    }
+
+    &__subtitle {
+        font-size: 14px;
+        color: $color-text-muted;
+        text-align: center;
+        margin: 0 0 28px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    &__label {
+        font-size: 13px;
+        font-weight: 500;
+        color: $color-black;
+    }
+
+    &__input {
+        width: 100%;
+        font-family: $font-body;
+        font-size: 15px;
+        color: $color-black;
+        background-color: $color-bg-light;
+        border: 1px solid $color-border;
+        border-radius: $radius-md;
+        padding: 12px 14px;
+        outline: none;
+        transition: border-color $transition-fast, box-shadow $transition-fast;
+
+        &::placeholder {
+            color: #a0aec0;
+        }
+
+        &:focus {
+            border-color: $color-primary;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            background-color: $color-white;
+        }
+    }
+
+    &__error {
+        font-size: 12px;
+        color: $color-danger;
+        margin-top: 2px;
+    }
+
+    &__submitBtn {
+        width: 100%;
+        font-family: $font-heading;
+        font-size: 15px;
+        font-weight: 600;
+        color: $color-white;
+        background: linear-gradient(135deg, $color-primary, #764ba2);
+        border: none;
+        border-radius: $radius-md;
+        padding: 13px 20px;
+        margin-top: 6px;
+        cursor: pointer;
+        transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast;
+
+        &:hover:not(:disabled) {
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+            transform: translateY(-1px);
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        &:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+    }
+
+    &__toggleBtn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-family: $font-body;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: $color-primary;
+        background: transparent;
+        border: none;
+        margin-top: 22px;
+        cursor: pointer;
+        transition: color $transition-fast;
+
+        &:hover {
+            color: $color-primary-hover;
+            text-decoration: underline;
+        }
+    }
+
+    // ---------------------------------------------------------------------
+    // Tablet
+    // ---------------------------------------------------------------------
+    @media (max-width: 768px) {
+        &__card {
+            max-width: 380px;
+            padding: 34px 26px;
+        }
+
+        &__title {
+            font-size: 25px;
+        }
+    }
+
+    // ---------------------------------------------------------------------
+    // Mobile
+    // ---------------------------------------------------------------------
+    @media (max-width: 480px) {
+        padding: 20px 0;
+
+        &__card {
+            max-width: 100%;
+            margin: 0 12px;
+            padding: 28px 20px;
+            border-radius: $radius-md;
+        }
+
+        &__title {
+            font-size: 22px;
+        }
+
+        &__subtitle {
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        &__input {
+            font-size: 14px;
+            padding: 11px 12px;
+        }
+
+        &__submitBtn {
+            font-size: 14px;
+            padding: 12px 18px;
+        }
+    }
+}

@@ -1,0 +1,1063 @@
+// ==========================================================================
+// TemplatesOverview.scss
+// Scoped styles for the TemplatesOverview page (all classes prefixed "to-")
+// Theme: White + Blue — elevated, production-grade visual treatment
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-primary-hover: #5468d4;
+$color-primary-soft: rgba(102, 126, 234, 0.08);
+$color-bg-light: #f7fafc;
+$color-bg-page: #f4f6fb;
+
+$color-text: #1a202c;
+$color-text-muted: #64748b;
+$color-text-faint: #94a3b8;
+$color-border: #e6eaf1;
+$color-border-soft: #eef1f7;
+
+$color-success: #38a169;
+$color-success-hover: #2f855a;
+$color-danger: #e53e3e;
+$color-danger-hover: #c53030;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+$font-mono: "Consolas", "Monaco", monospace;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-full: 999px;
+
+$transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-med: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Layered "elevation" shadows — this is what makes cards feel real
+// instead of flat test-boxes.
+@mixin elevation-1 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+@mixin elevation-2 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 8px 24px rgba(102, 126, 234, 0.08),
+        0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+@mixin elevation-3 {
+    box-shadow:
+        0 8px 16px rgba(15, 23, 42, 0.06),
+        0 24px 48px rgba(102, 126, 234, 0.14);
+}
+
+.to-main {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: $font-body;
+    color: $color-text;
+    background-color: $color-bg-page;
+    padding: 32px 24px 72px;
+    overflow-x: hidden;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------
+.to-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.to-headerText {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.to-pageTitle {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: $font-heading;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: $color-black;
+    margin: 0;
+
+    svg {
+        color: $color-primary;
+        font-size: 20px;
+    }
+}
+
+.to-pageSubtitle {
+    font-size: 13.5px;
+    color: $color-text-muted;
+    margin: 0;
+}
+
+.to-createToggleBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary 0%, #7c6cf0 55%, #764ba2 100%);
+    border: none;
+    border-radius: $radius-md;
+    padding: 12px 22px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.35);
+    transition: transform $transition-fast, box-shadow $transition-fast, background $transition-fast;
+
+    &:hover {
+        transform: translateY(-1.5px);
+        box-shadow: 0 8px 22px rgba(102, 126, 234, 0.42);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &--active {
+        background: $color-white;
+        color: $color-text-muted;
+        box-shadow: $color-border-soft 0 0 0 1.5px;
+
+        &:hover {
+            color: $color-danger;
+            box-shadow: rgba(229, 62, 62, 0.35) 0 0 0 1.5px;
+            transform: none;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------
+// Create form wrapper (toggled)
+// ---------------------------------------------------------------------
+.to-createFormWrapper {
+    margin-bottom: 28px;
+    animation: to-fadeSlideIn 0.28s ease-out;
+}
+
+@keyframes to-fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Table section
+// ---------------------------------------------------------------------
+.to-tableSection {
+    margin-top: 8px;
+}
+
+.to-tableSectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.to-tableSectionTitle {
+    font-family: $font-heading;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0;
+}
+
+.to-tableCount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    font-family: $font-heading;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-full;
+}
+
+.to-tableWrapper {
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    @include elevation-2;
+}
+
+.to-tableWrapper table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $color-bg-light;
+
+        th {
+            text-align: left;
+            font-family: $font-heading;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $color-text-faint;
+            padding: 15px 22px;
+            border-bottom: 1px solid $color-border-soft;
+        }
+    }
+
+    tbody tr {
+        transition: background-color $transition-fast;
+
+        &:hover {
+            background-color: #fafbfe;
+        }
+
+        &:not(:last-child) td {
+            border-bottom: 1px solid $color-border-soft;
+        }
+    }
+
+    td {
+        font-size: 14px;
+        color: $color-text;
+        padding: 16px 22px;
+        vertical-align: middle;
+    }
+}
+
+.to-nameCell {
+    font-weight: 600;
+    color: $color-black;
+}
+
+.to-subjectCell {
+    color: $color-text-muted;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.to-attachmentCount {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $font-heading;
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-full;
+    padding: 5px 11px;
+
+    svg {
+        font-size: 10px;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Row actions — filled icon buttons (reads more finished than bare
+// outlined text buttons)
+// ---------------------------------------------------------------------
+.to-actionButtons {
+    display: flex;
+    gap: 8px;
+}
+
+.to-iconBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: $radius-sm;
+    border: none;
+    cursor: pointer;
+    font-size: 13.5px;
+    transition: background-color $transition-fast, transform $transition-fast, color $transition-fast;
+
+    &:active {
+        transform: scale(0.94);
+    }
+}
+
+.to-iconBtn--view {
+    color: $color-primary;
+    background-color: $color-primary-soft;
+
+    &:hover {
+        background-color: rgba(102, 126, 234, 0.16);
+    }
+}
+
+.to-iconBtn--edit {
+    color: $color-success;
+    background-color: rgba(56, 161, 105, 0.1);
+
+    &:hover {
+        background-color: rgba(56, 161, 105, 0.18);
+    }
+}
+
+.to-iconBtn--delete {
+    color: $color-danger;
+    background-color: rgba(229, 62, 62, 0.08);
+
+    &:hover {
+        background-color: rgba(229, 62, 62, 0.16);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Loading state
+// ---------------------------------------------------------------------
+.to-loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 70px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-1;
+}
+
+.to-loadingSpinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: to-spin 0.8s linear infinite;
+}
+
+@keyframes to-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Empty state — real CTA, not just a stray line of text
+// ---------------------------------------------------------------------
+.to-emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 64px 24px;
+    text-align: center;
+    background-color: $color-white;
+    border: 1.5px dashed $color-border;
+    border-radius: $radius-lg;
+}
+
+.to-emptyIconWrap {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $color-primary-soft, rgba(118, 75, 162, 0.08));
+    margin-bottom: 6px;
+}
+
+.to-emptyIcon {
+    font-size: 22px;
+    color: $color-primary;
+}
+
+.to-emptyTitle {
+    font-family: $font-heading;
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0;
+}
+
+.to-emptyText {
+    font-size: 13.5px;
+    color: $color-text-muted;
+    margin: 0 0 10px;
+    max-width: 320px;
+}
+
+.to-emptyCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary, #764ba2);
+    border: none;
+    border-radius: $radius-md;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+    transition: transform $transition-fast, box-shadow $transition-fast;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.38);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Shared modal shell (View + Edit)
+// ---------------------------------------------------------------------
+.to-modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+    animation: to-overlayIn 0.18s ease-out;
+}
+
+@keyframes to-overlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.to-modalContent {
+    width: 100%;
+    max-width: 640px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    @include elevation-3;
+    animation: to-modalIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes to-modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.to-modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid $color-border-soft;
+    background: linear-gradient(180deg, $color-bg-light 0%, $color-white 100%);
+}
+
+.to-modalTitle {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: $font-heading;
+    font-size: 17px;
+    font-weight: 600;
+    color: $color-black;
+}
+
+.to-modalTitleIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-sm;
+    background-color: $color-primary-soft;
+    color: $color-primary;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.to-modalClose {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: $color-bg-light;
+    border: none;
+    border-radius: 50%;
+    color: $color-text-muted;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+        background-color: rgba(229, 62, 62, 0.1);
+        color: $color-danger;
+    }
+}
+
+.to-modalBody {
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.to-modalFooter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px 24px;
+    border-top: 1px solid $color-border-soft;
+    background-color: $color-bg-light;
+}
+
+// ---------------------------------------------------------------------
+// View modal content
+// ---------------------------------------------------------------------
+.to-viewRow {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.to-viewLabel {
+    font-family: $font-heading;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-text-faint;
+}
+
+.to-viewValue {
+    font-size: 14px;
+    color: $color-text;
+}
+
+.to-viewCode {
+    margin: 0;
+    max-height: 260px;
+    overflow: auto;
+    font-family: $font-mono;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    background-color: #161b26;
+    border: 1px solid #2d3748;
+    border-radius: $radius-md;
+    padding: 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    @include elevation-1;
+}
+
+.to-viewAttachmentList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.to-viewAttachmentItem {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-sm;
+    padding: 9px 13px;
+    transition: border-color $transition-fast;
+
+    &:hover {
+        border-color: rgba(102, 126, 234, 0.3);
+    }
+
+    svg:first-child {
+        color: $color-primary;
+        font-size: 13px;
+        flex-shrink: 0;
+    }
+
+    &--new {
+        border-color: rgba(56, 161, 105, 0.35);
+        background-color: rgba(56, 161, 105, 0.05);
+    }
+}
+
+.to-viewAttachmentName {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.to-viewAttachmentSize {
+    flex-shrink: 0;
+    font-size: 11.5px;
+    color: $color-text-faint;
+}
+
+.to-viewAttachmentDownload {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: $color-primary;
+    transition: background-color $transition-fast;
+
+    &:hover {
+        background-color: $color-primary-soft;
+    }
+}
+
+.to-attachmentNewBadge {
+    flex-shrink: 0;
+    font-family: $font-heading;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color-success;
+    background-color: rgba(56, 161, 105, 0.14);
+    border-radius: $radius-full;
+    padding: 3px 8px;
+}
+
+.to-attachmentRemoveBtn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: $color-text-faint;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+        background-color: rgba(229, 62, 62, 0.1);
+        color: $color-danger;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Edit modal content
+// ---------------------------------------------------------------------
+.to-editGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.to-editLabel {
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-black;
+}
+
+.to-editNote {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: $color-text-faint;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.to-editInput,
+.to-editTextarea {
+    width: 100%;
+    font-family: $font-body;
+    font-size: 14px;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 11px 13px;
+    outline: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast, background-color $transition-fast;
+
+    &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.13);
+        background-color: $color-white;
+    }
+
+    &.error {
+        border-color: $color-danger;
+    }
+}
+
+.to-editTextarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.55;
+}
+
+.to-editTextarea--code {
+    font-family: $font-mono;
+    font-size: 12.5px;
+    background-color: #161b26;
+    color: #e2e8f0;
+    border-color: #2d3748;
+
+    &:focus {
+        background-color: #161b26;
+        border-color: $color-primary;
+    }
+
+    &.error {
+        border-color: $color-danger;
+    }
+}
+
+.to-editError {
+    font-size: 12px;
+    color: $color-danger;
+}
+
+.to-editFileDrop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: $color-bg-light;
+    border: 1.5px dashed $color-border;
+    border-radius: $radius-sm;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: border-color $transition-fast, background-color $transition-fast;
+
+    &:hover {
+        border-color: $color-primary;
+        background-color: $color-primary-soft;
+    }
+}
+
+.to-editFileDropIcon {
+    font-size: 12px;
+    color: $color-primary;
+}
+
+.to-editFileDropText {
+    font-size: 13px;
+    font-weight: 500;
+    color: $color-text;
+}
+
+.to-editFileInput {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.to-cancelBtn {
+    flex: 1 1 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-text;
+    background-color: $color-white;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-md;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: background-color $transition-fast, border-color $transition-fast;
+
+    &:hover {
+        background-color: $color-bg-light;
+        border-color: $color-text-faint;
+    }
+}
+
+.to-saveBtn {
+    flex: 1 1 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-white;
+    background-color: $color-success;
+    border: none;
+    border-radius: $radius-md;
+    padding: 11px 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(56, 161, 105, 0.28);
+    transition: background-color $transition-fast, box-shadow $transition-fast, opacity $transition-fast, transform $transition-fast;
+
+    &:hover:not(:disabled) {
+        background-color: $color-success-hover;
+        transform: translateY(-1px);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Custom delete confirmation dialog (replaces window.confirm)
+// ---------------------------------------------------------------------
+.to-confirmOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1100;
+    animation: to-overlayIn 0.18s ease-out;
+}
+
+.to-confirmDialog {
+    width: 100%;
+    max-width: 380px;
+    background-color: $color-white;
+    border-radius: $radius-lg;
+    padding: 28px;
+    text-align: center;
+    @include elevation-3;
+    animation: to-modalIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
+    h3 {
+        font-family: $font-heading;
+        font-size: 17px;
+        font-weight: 600;
+        color: $color-black;
+        margin: 6px 0 10px;
+    }
+
+    p {
+        font-size: 13.5px;
+        color: $color-text-muted;
+        line-height: 1.55;
+        margin: 0 0 22px;
+
+        strong {
+            color: $color-text;
+            word-break: break-word;
+        }
+    }
+}
+
+.to-confirmIcon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(229, 62, 62, 0.1);
+    color: $color-danger;
+    font-size: 19px;
+}
+
+.to-confirmButtons {
+    display: flex;
+    gap: 10px;
+
+    button {
+        flex: 1;
+        font-family: $font-heading;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: $radius-md;
+        padding: 11px 16px;
+        cursor: pointer;
+        border: none;
+        transition: background-color $transition-fast, transform $transition-fast;
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+}
+
+.to-confirmCancel {
+    background-color: $color-bg-light;
+    color: $color-text;
+    border: 1.5px solid $color-border !important;
+
+    &:hover {
+        background-color: $color-border;
+    }
+}
+
+.to-confirmDelete {
+    background-color: $color-danger;
+    color: $color-white;
+    box-shadow: 0 4px 14px rgba(229, 62, 62, 0.3);
+
+    &:hover {
+        background-color: $color-danger-hover;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Tablet
+// ---------------------------------------------------------------------
+@media (max-width: 900px) {
+    .to-main {
+        padding: 24px 18px 56px;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile — convert table into stacked cards
+// ---------------------------------------------------------------------
+@media (max-width: 640px) {
+    .to-main {
+        padding: 18px 14px 44px;
+    }
+
+    .to-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .to-createToggleBtn {
+        justify-content: center;
+    }
+
+    .to-tableWrapper table,
+    .to-tableWrapper thead,
+    .to-tableWrapper tbody,
+    .to-tableWrapper th,
+    .to-tableWrapper td,
+    .to-tableWrapper tr {
+        display: block;
+        width: 100%;
+    }
+
+    .to-tableWrapper thead {
+        display: none;
+    }
+
+    .to-tableWrapper tbody tr {
+        padding: 14px 18px;
+    }
+
+    .to-tableWrapper td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+        text-align: right;
+
+        &::before {
+            content: attr(data-label);
+            font-family: $font-heading;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $color-text-faint;
+            text-align: left;
+        }
+    }
+
+    .to-subjectCell {
+        max-width: 60%;
+        white-space: normal;
+    }
+
+    .to-actionButtons {
+        justify-content: flex-end;
+    }
+
+    .to-modalContent {
+        max-height: 92vh;
+    }
+
+    .to-modalFooter {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+        }
+    }
+
+    .to-confirmDialog {
+        padding: 24px 18px;
+    }
+}

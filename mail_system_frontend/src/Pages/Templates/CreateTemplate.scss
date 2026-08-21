@@ -1,0 +1,284 @@
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-bg-light: #f7fafc;
+$color-text: #1a202c;
+$color-text-muted: #4a5568;
+$color-border: #e2e8f0;
+$color-danger: #e53e3e;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+$font-mono: "Consolas", "Monaco", monospace;
+
+$radius-md: 10px;
+$radius-lg: 16px;
+$transition-fast: 0.2s ease-in-out;
+
+.ct-card {
+    width: 100%;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: 28px 26px;
+    box-sizing: border-box;
+}
+
+.ct-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-heading;
+    font-size: 18px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0 0 6px;
+
+    svg {
+        color: $color-primary;
+    }
+}
+
+.ct-subtitle {
+    font-size: 13px;
+    color: $color-text-muted;
+    margin: 0 0 20px;
+}
+
+// ---------------------------------------------------------------------
+// Mode tabs
+// ---------------------------------------------------------------------
+.ct-modeTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: 16px;
+}
+
+.ct-modeTab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-text-muted;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+
+    svg {
+        font-size: 12px;
+    }
+
+    &:hover {
+        background-color: rgba(102, 126, 234, 0.08);
+        color: $color-primary;
+    }
+
+    &.active {
+        background: linear-gradient(135deg, $color-primary, #764ba2);
+        color: $color-white;
+        border-color: transparent;
+    }
+}
+
+.ct-modeContent {
+    min-height: 100px;
+}
+
+// ---------------------------------------------------------------------
+// Write HTML form (original)
+// ---------------------------------------------------------------------
+.ct-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.ct-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ct-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: $color-black;
+}
+
+.ct-input,
+.ct-textarea {
+    width: 100%;
+    font-family: $font-body;
+    font-size: 14.5px;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast, background-color $transition-fast;
+
+    &::placeholder {
+        color: #a0aec0;
+    }
+
+    &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        background-color: $color-white;
+    }
+}
+
+.ct-textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.5;
+}
+
+.ct-textarea--code {
+    font-family: $font-mono;
+    font-size: 13px;
+    background-color: #1a202c;
+    color: #e2e8f0;
+    border-color: #2d3748;
+
+    &::placeholder {
+        color: #718096;
+    }
+
+    &:focus {
+        background-color: #1a202c;
+        border-color: $color-primary;
+    }
+}
+
+.ct-error {
+    font-size: 12px;
+    color: $color-danger;
+    margin-top: 2px;
+}
+
+// ---------------------------------------------------------------------
+// Attachments file drop
+// ---------------------------------------------------------------------
+.ct-fileDrop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: $color-bg-light;
+    border: 1.5px dashed $color-border;
+    border-radius: $radius-md;
+    padding: 16px;
+    cursor: pointer;
+    transition: border-color $transition-fast, background-color $transition-fast;
+
+    &:hover {
+        border-color: $color-primary;
+        background-color: rgba(102, 126, 234, 0.05);
+    }
+}
+
+.ct-fileDropIcon {
+    font-size: 16px;
+    color: $color-primary;
+}
+
+.ct-fileDropText {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: $color-text;
+}
+
+.ct-fileInput {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ct-fileList {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ct-fileItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: $color-text-muted;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.ct-fileItemIcon {
+    color: $color-primary;
+    flex-shrink: 0;
+}
+
+.ct-fileItemName {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $color-text;
+}
+
+.ct-fileItemSize {
+    flex-shrink: 0;
+}
+
+.ct-submitBtn {
+    width: 100%;
+    font-family: $font-heading;
+    font-size: 15px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary, #764ba2);
+    border: none;
+    border-radius: $radius-md;
+    padding: 13px 20px;
+    cursor: pointer;
+    transition: box-shadow $transition-fast, opacity $transition-fast;
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+    }
+
+    &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+    }
+}
+
+@media (max-width: 600px) {
+    .ct-card {
+        padding: 22px 18px;
+    }
+
+    .ct-modeTabs {
+        flex-direction: column;
+    }
+
+    .ct-modeTab {
+        width: 100%;
+        justify-content: center;
+    }
+}

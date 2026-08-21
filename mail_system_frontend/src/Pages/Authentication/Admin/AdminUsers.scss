@@ -1,0 +1,880 @@
+// ==========================================================================
+// AdminUsers.scss
+// Scoped styles for the AdminUsers page (all classes prefixed "au-")
+// Theme: White + Blue
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-primary-hover: #5468d4;
+$color-bg-light: #f7fafc;
+
+$color-text: #1a202c;
+$color-text-muted: #4a5568;
+$color-border: #e2e8f0;
+
+$color-success: #38a169;
+$color-success-hover: #2f855a;
+$color-danger: #e53e3e;
+$color-danger-hover: #c53030;
+$color-excel: #21a565;
+$color-excel-hover: #1b8c56;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+$transition-fast: 0.18s ease-in-out;
+
+@mixin btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: $radius-md;
+    padding: 10px 18px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast, background-color $transition-fast;
+
+    &:hover:not(:disabled) {
+        transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+.au-main {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-family: $font-body;
+    color: $color-text;
+    background-color: $color-bg-light;
+    padding: 24px 20px 60px;
+    overflow-x: hidden;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Page header / search / action buttons
+// ---------------------------------------------------------------------
+.au-page-header {
+    margin-bottom: 20px;
+}
+
+.au-right-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.au-search-container {
+    position: relative;
+    flex: 1 1 260px;
+    max-width: 360px;
+
+    input {
+        width: 100%;
+        font-family: $font-body;
+        font-size: 14px;
+        color: $color-text;
+        background-color: $color-white;
+        border: 1px solid $color-border;
+        border-radius: $radius-md;
+        padding: 10px 14px 10px 38px;
+        outline: none;
+        transition: border-color $transition-fast, box-shadow $transition-fast;
+
+        &:focus {
+            border-color: $color-primary;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        &::placeholder {
+            color: #a0aec0;
+        }
+    }
+}
+
+.au-search-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-primary;
+    font-size: 14px;
+}
+
+.au-action-buttons-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.au-export-all-btn {
+    @include btn-base;
+    background-color: $color-excel;
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+        background-color: $color-excel-hover;
+        box-shadow: 0 6px 16px rgba(33, 165, 101, 0.3);
+    }
+}
+
+.au-add-btn {
+    @include btn-base;
+    background: linear-gradient(135deg, $color-primary, #764ba2);
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Add User form
+// ---------------------------------------------------------------------
+.au-form-container {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.08);
+
+    h2 {
+        font-family: $font-heading;
+        font-size: 20px;
+        font-weight: 600;
+        color: $color-black;
+        margin: 0 0 20px;
+    }
+}
+
+.au-form-row {
+    margin-bottom: 16px;
+}
+
+.au-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: $color-black;
+
+        svg {
+            color: $color-primary;
+        }
+    }
+
+    input,
+    select {
+        width: 100%;
+        font-family: $font-body;
+        font-size: 14px;
+        color: $color-text;
+        background-color: $color-bg-light;
+        border: 1px solid $color-border;
+        border-radius: $radius-md;
+        padding: 11px 14px;
+        outline: none;
+        transition: border-color $transition-fast, box-shadow $transition-fast, background-color $transition-fast;
+
+        &:focus {
+            border-color: $color-primary;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            background-color: $color-white;
+        }
+    }
+}
+
+.au-password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+        padding-right: 42px;
+    }
+}
+
+.au-password-toggle {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: $color-text-muted;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+
+    &:hover {
+        color: $color-primary;
+    }
+}
+
+.au-permissions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.au-permission-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: border-color $transition-fast, background-color $transition-fast;
+
+    &:has(input:checked) {
+        border-color: $color-primary;
+        background-color: rgba(102, 126, 234, 0.08);
+    }
+
+    input {
+        accent-color: $color-primary;
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.au-error {
+    font-size: 12px;
+    color: $color-danger;
+    margin-top: 4px;
+}
+
+.au-submit-btn {
+    @include btn-base;
+    background: linear-gradient(135deg, $color-primary, #764ba2);
+    color: $color-white;
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 6px;
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Data table
+// ---------------------------------------------------------------------
+.au-data-table {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.06);
+}
+
+.au-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 60px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+}
+
+.au-loading-spinner {
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: au-spin 0.8s linear infinite;
+
+    &.large {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+@keyframes au-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.au-data-table table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $color-bg-light;
+
+        th {
+            text-align: left;
+            font-family: $font-heading;
+            font-size: 12.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: $color-text-muted;
+            padding: 14px 18px;
+            border-bottom: 1px solid $color-border;
+        }
+    }
+
+    tbody tr {
+        cursor: pointer;
+        transition: background-color $transition-fast;
+
+        &:hover {
+            background-color: rgba(102, 126, 234, 0.06);
+        }
+
+        &.au-selected {
+            background-color: rgba(102, 126, 234, 0.12);
+        }
+
+        &:not(:last-child) td {
+            border-bottom: 1px solid $color-border;
+        }
+    }
+
+    td {
+        font-size: 14px;
+        color: $color-text;
+        padding: 14px 18px;
+    }
+}
+
+.au-load-more-container {
+    display: flex;
+    justify-content: center;
+    padding: 18px;
+    border-top: 1px solid $color-border;
+}
+
+.au-load-more-btn {
+    @include btn-base;
+    background-color: $color-white;
+    color: $color-primary;
+    border: 1.5px solid $color-primary;
+
+    &:hover:not(:disabled) {
+        background-color: rgba(102, 126, 234, 0.08);
+    }
+}
+
+// ---------------------------------------------------------------------
+// User modal
+// ---------------------------------------------------------------------
+.au-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(26, 32, 44, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.au-modal-content {
+    width: 100%;
+    max-width: 560px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.au-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    border-bottom: 1px solid $color-border;
+    background-color: $color-bg-light;
+}
+
+.au-modal-title {
+    font-family: $font-heading;
+    font-size: 17px;
+    font-weight: 600;
+    color: $color-black;
+}
+
+.au-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: $color-text-muted;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+        background-color: rgba(229, 62, 62, 0.1);
+        color: $color-danger;
+    }
+}
+
+.au-modal-body {
+    padding: 22px;
+    overflow-y: auto;
+}
+
+.au-details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.au-detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.au-detail-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+
+    svg {
+        color: $color-primary;
+    }
+}
+
+.au-detail-value {
+    font-size: 14.5px;
+    color: $color-text;
+}
+
+.au-edit-field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.au-edit-input {
+    width: 100%;
+    font-family: $font-body;
+    font-size: 14px;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+    }
+
+    &.error {
+        border-color: $color-danger;
+    }
+}
+
+.au-error-message {
+    font-size: 12px;
+    color: $color-danger;
+}
+
+.au-permissions-grid-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.au-permission-checkbox-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 7px 12px;
+    cursor: pointer;
+
+    &:has(input:checked) {
+        border-color: $color-primary;
+        background-color: rgba(102, 126, 234, 0.08);
+    }
+
+    input {
+        accent-color: $color-primary;
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.au-password-toggle-btn {
+    @include btn-base;
+    background-color: $color-bg-light;
+    color: $color-primary;
+    border: 1px solid $color-border;
+    font-size: 13px;
+    padding: 9px 14px;
+    align-self: flex-start;
+
+    &.active,
+    &:hover:not(:disabled) {
+        border-color: $color-primary;
+        background-color: rgba(102, 126, 234, 0.08);
+    }
+}
+
+.au-password-field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.au-password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+        width: 100%;
+        font-family: $font-body;
+        font-size: 14px;
+        background-color: $color-bg-light;
+        border: 1px solid $color-border;
+        border-radius: $radius-sm;
+        padding: 10px 42px 10px 12px;
+        outline: none;
+
+        &:focus {
+            border-color: $color-primary;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        &.error {
+            border-color: $color-danger;
+        }
+    }
+}
+
+.au-password-visibility-toggle {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: $color-text-muted;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        color: $color-primary;
+    }
+}
+
+.au-password-hint {
+    font-size: 11.5px;
+    color: $color-text-muted;
+}
+
+.au-admin-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #9c4221;
+    background-color: #fffaf0;
+    border: 1px solid #feebc8;
+    border-radius: $radius-sm;
+    padding: 10px 12px;
+}
+
+.au-modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px 22px;
+    border-top: 1px solid $color-border;
+    background-color: $color-bg-light;
+}
+
+.au-export-btn {
+    @include btn-base;
+    flex: 1 1 auto;
+    background-color: $color-white;
+    color: $color-primary;
+    border: 1.5px solid $color-primary;
+
+    &:hover:not(:disabled) {
+        background-color: rgba(102, 126, 234, 0.08);
+    }
+}
+
+.au-update-btn {
+    @include btn-base;
+    flex: 1 1 auto;
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+        background-color: $color-primary-hover;
+    }
+
+    &.au-save-btn {
+        background-color: $color-success;
+
+        &:hover:not(:disabled) {
+            background-color: $color-success-hover;
+        }
+    }
+}
+
+.au-delete-btn {
+    @include btn-base;
+    flex: 1 1 auto;
+    background-color: $color-white;
+    color: $color-danger;
+    border: 1.5px solid $color-danger;
+
+    &:hover:not(:disabled) {
+        background-color: rgba(229, 62, 62, 0.08);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Custom delete confirmation dialog (replaces window.confirm)
+// ---------------------------------------------------------------------
+.au-confirm-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(26, 32, 44, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1100;
+}
+
+.au-confirm-dialog {
+    width: 100%;
+    max-width: 380px;
+    background-color: $color-white;
+    border-radius: $radius-lg;
+    padding: 26px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+
+    h3 {
+        font-family: $font-heading;
+        font-size: 17px;
+        font-weight: 600;
+        color: $color-black;
+        margin: 4px 0 10px;
+    }
+
+    p {
+        font-size: 13.5px;
+        color: $color-text-muted;
+        line-height: 1.5;
+        margin: 0 0 20px;
+
+        strong {
+            color: $color-text;
+        }
+    }
+}
+
+.au-confirm-icon {
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(229, 62, 62, 0.1);
+    color: $color-danger;
+    font-size: 18px;
+}
+
+.au-confirm-buttons {
+    display: flex;
+    gap: 10px;
+
+    button {
+        flex: 1;
+    }
+}
+
+.au-confirm-cancel {
+    @include btn-base;
+    background-color: $color-bg-light;
+    color: $color-text;
+    border: 1px solid $color-border;
+
+    &:hover:not(:disabled) {
+        background-color: $color-border;
+    }
+}
+
+.au-confirm-delete {
+    @include btn-base;
+    background-color: $color-danger;
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+        background-color: $color-danger-hover;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Tablet
+// ---------------------------------------------------------------------
+@media (max-width: 900px) {
+    .au-main {
+        padding: 20px 16px 50px;
+    }
+
+    .au-right-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .au-search-container {
+        max-width: 100%;
+    }
+
+    .au-action-buttons-group {
+        justify-content: flex-end;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile
+// ---------------------------------------------------------------------
+@media (max-width: 640px) {
+    .au-main {
+        padding: 16px 12px 40px;
+    }
+
+    .au-form-container {
+        padding: 20px 16px;
+    }
+
+    .au-action-buttons-group {
+        width: 100%;
+
+        button {
+            flex: 1 1 auto;
+        }
+    }
+
+    // Convert the table into a stacked card list
+    .au-data-table table,
+    .au-data-table thead,
+    .au-data-table tbody,
+    .au-data-table th,
+    .au-data-table td,
+    .au-data-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .au-data-table thead {
+        display: none;
+    }
+
+    .au-data-table tbody tr {
+        border-bottom: 1px solid $color-border;
+        padding: 12px 16px;
+
+        &:not(:last-child) td {
+            border-bottom: none;
+        }
+    }
+
+    .au-data-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 6px 0;
+        text-align: right;
+
+        &::before {
+            content: attr(data-label);
+            font-family: $font-heading;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $color-text-muted;
+            text-align: left;
+        }
+    }
+
+    .au-modal-content {
+        max-height: 92vh;
+    }
+
+    .au-modal-footer {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+        }
+    }
+
+    .au-confirm-dialog {
+        padding: 22px 18px;
+    }
+}

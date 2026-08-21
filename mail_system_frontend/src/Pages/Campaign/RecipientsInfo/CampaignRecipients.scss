@@ -1,0 +1,631 @@
+// ==========================================================================
+// CampaignRecipients.scss
+// Scoped styles for the CampaignRecipients page (all classes prefixed "cr-")
+// Theme: White + Blue — elevated, production-grade visual treatment
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-primary-hover: #5468d4;
+$color-primary-soft: rgba(102, 126, 234, 0.08);
+$color-bg-light: #f7fafc;
+$color-bg-page: #f4f6fb;
+
+$color-text: #1a202c;
+$color-text-muted: #64748b;
+$color-text-faint: #94a3b8;
+$color-border: #e6eaf1;
+$color-border-soft: #eef1f7;
+
+$color-success: #38a169;
+$color-danger: #e53e3e;
+$color-neutral: #718096;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-full: 999px;
+$transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+
+@mixin elevation-1 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+@mixin elevation-2 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 8px 24px rgba(102, 126, 234, 0.08),
+        0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.cr-main {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: $font-body;
+    color: $color-text;
+    background-color: $color-bg-page;
+    padding: 28px 24px 72px;
+    overflow-x: hidden;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------
+.cr-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.cr-pageTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-heading;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: $color-black;
+    margin: 0 0 6px;
+
+    svg {
+        color: $color-primary;
+        font-size: 19px;
+    }
+}
+
+.cr-backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $font-body;
+    font-size: 13px;
+    font-weight: 500;
+    color: $color-primary;
+    text-decoration: none;
+
+    &:hover {
+        color: $color-primary-hover;
+        text-decoration: underline;
+    }
+}
+
+.cr-headerActions {
+    display: flex;
+    gap: 10px;
+}
+
+.cr-exportBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, #38a169, #2f855a);
+    border: none;
+    border-radius: $radius-md;
+    padding: 10px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(56, 161, 105, 0.3);
+    transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast;
+
+    &:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(56, 161, 105, 0.38);
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+}
+
+.cr-refreshBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-white;
+    border: 1.5px solid rgba(102, 126, 234, 0.35);
+    border-radius: $radius-md;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background-color $transition-fast, opacity $transition-fast;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+        background-color: $color-primary-soft;
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+}
+
+.cr-spinIcon {
+    animation: cr-spin 0.8s linear infinite;
+}
+
+@keyframes cr-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Toolbar — search + status filter
+// ---------------------------------------------------------------------
+.cr-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.cr-searchBox {
+    position: relative;
+    flex: 1 1 260px;
+    max-width: 380px;
+
+    input {
+        width: 100%;
+        font-family: $font-body;
+        font-size: 14px;
+        color: $color-text;
+        background-color: $color-white;
+        border: 1.5px solid $color-border;
+        border-radius: $radius-md;
+        padding: 10px 14px 10px 38px;
+        outline: none;
+        transition: border-color $transition-fast, box-shadow $transition-fast;
+
+        &:focus {
+            border-color: $color-primary;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.13);
+        }
+
+        &::placeholder {
+            color: #a0aec0;
+        }
+    }
+}
+
+.cr-searchIcon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-primary;
+    font-size: 13px;
+}
+
+.cr-statusSelect {
+    flex: 0 1 220px;
+    font-family: $font-body;
+    font-size: 14px;
+    color: $color-text;
+    background-color: $color-white;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-md;
+    padding: 10px 40px 10px 14px;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.13);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Summary card
+// ---------------------------------------------------------------------
+.cr-summaryCard {
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+    @include elevation-2;
+}
+
+.cr-summaryTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0 0 12px;
+
+    svg {
+        color: $color-primary;
+        font-size: 12px;
+    }
+}
+
+.cr-summaryFilteredTag {
+    font-family: $font-heading;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-full;
+    padding: 3px 9px;
+    margin-left: 4px;
+}
+
+.cr-summaryStats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.cr-summaryTotal {
+    font-family: $font-heading;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $color-text;
+    background-color: $color-bg-light;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-full;
+    padding: 5px 13px;
+}
+
+.cr-summaryPill {
+    font-family: $font-heading;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: $radius-full;
+    padding: 5px 13px;
+
+    &.cr-status--success {
+        color: $color-success;
+        background-color: rgba(56, 161, 105, 0.12);
+    }
+
+    &.cr-status--danger {
+        color: $color-danger;
+        background-color: rgba(229, 62, 62, 0.12);
+    }
+
+    &.cr-status--neutral {
+        color: $color-neutral;
+        background-color: rgba(113, 128, 150, 0.12);
+    }
+
+    &.cr-status--default {
+        color: $color-primary;
+        background-color: $color-primary-soft;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Table
+// ---------------------------------------------------------------------
+.cr-tableWrapper {
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    @include elevation-2;
+}
+
+.cr-tableWrapper table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $color-bg-light;
+
+        th {
+            text-align: left;
+            font-family: $font-heading;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $color-text-faint;
+            padding: 13px 16px;
+            border-bottom: 1px solid $color-border-soft;
+            white-space: nowrap;
+        }
+    }
+
+    tbody tr {
+        transition: background-color $transition-fast;
+
+        &:hover {
+            background-color: #fafbfe;
+        }
+
+        &:not(:last-child) td {
+            border-bottom: 1px solid $color-border-soft;
+        }
+    }
+
+    td {
+        font-size: 13.5px;
+        color: $color-text;
+        padding: 13px 16px;
+        vertical-align: middle;
+    }
+}
+
+.cr-failReason {
+    color: $color-danger;
+    max-width: 220px;
+    word-break: break-word;
+}
+
+.cr-statusBadge {
+    display: inline-flex;
+    align-items: center;
+    font-family: $font-heading;
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 4px 11px;
+    border-radius: $radius-full;
+    white-space: nowrap;
+
+    &.cr-status--success {
+        color: $color-success;
+        background-color: rgba(56, 161, 105, 0.12);
+    }
+
+    &.cr-status--danger {
+        color: $color-danger;
+        background-color: rgba(229, 62, 62, 0.12);
+    }
+
+    &.cr-status--neutral {
+        color: $color-neutral;
+        background-color: rgba(113, 128, 150, 0.12);
+    }
+
+    &.cr-status--default {
+        color: $color-primary;
+        background-color: $color-primary-soft;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Loading / Empty states
+// ---------------------------------------------------------------------
+.cr-loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 70px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-1;
+}
+
+.cr-loadingSpinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: cr-spin 0.8s linear infinite;
+}
+
+.cr-emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 50px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+    background-color: $color-white;
+    border: 1.5px dashed $color-border;
+    border-radius: $radius-lg;
+    text-align: center;
+}
+
+.cr-emptyIcon {
+    font-size: 24px;
+    color: $color-primary;
+    opacity: 0.6;
+}
+
+// ---------------------------------------------------------------------
+// Tablet
+// ---------------------------------------------------------------------
+@media (max-width: 900px) {
+    .cr-main {
+        padding: 22px 18px 56px;
+    }
+
+    .cr-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cr-headerActions {
+        width: 100%;
+    }
+
+    .cr-exportBtn,
+    .cr-refreshBtn {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile — convert table into stacked cards
+// ---------------------------------------------------------------------
+@media (max-width: 640px) {
+    .cr-main {
+        padding: 16px 12px 44px;
+    }
+
+    .cr-toolbar {
+        flex-direction: column;
+    }
+
+    .cr-searchBox {
+        max-width: 100%;
+    }
+
+    .cr-statusSelect {
+        flex: 1 1 auto;
+    }
+
+    .cr-tableWrapper table,
+    .cr-tableWrapper thead,
+    .cr-tableWrapper tbody,
+    .cr-tableWrapper th,
+    .cr-tableWrapper td,
+    .cr-tableWrapper tr {
+        display: block;
+        width: 100%;
+    }
+
+    .cr-tableWrapper thead {
+        display: none;
+    }
+
+    .cr-tableWrapper tbody tr {
+        padding: 12px 16px;
+    }
+
+    .cr-tableWrapper td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+        text-align: right;
+
+        &::before {
+            content: attr(data-label);
+            font-family: $font-heading;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $color-text-faint;
+            text-align: left;
+            flex-shrink: 0;
+        }
+    }
+
+    .cr-failReason {
+        max-width: 60%;
+        text-align: right;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Pagination
+// ---------------------------------------------------------------------
+.cr-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-1;
+
+    span {
+        font-family: $font-heading;
+        font-size: 13px;
+        font-weight: 600;
+        color: $color-text-muted;
+        white-space: nowrap;
+    }
+
+    button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $font-heading;
+        font-size: 13px;
+        font-weight: 600;
+        color: $color-primary;
+        background-color: $color-primary-soft;
+        border: none;
+        border-radius: $radius-sm;
+        padding: 8px 18px;
+        cursor: pointer;
+        transition: background-color $transition-fast, opacity $transition-fast;
+
+        &:hover:not(:disabled) {
+            background-color: rgba(102, 126, 234, 0.16);
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .cr-pagination {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px 16px;
+
+        button {
+            flex: 1;
+        }
+
+        span {
+            width: 100%;
+            text-align: center;
+            order: -1;
+        }
+    }
+}

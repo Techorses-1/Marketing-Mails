@@ -1,0 +1,622 @@
+// ==========================================================================
+// Home.scss
+// Scoped styles for the dashboard page (all classes prefixed "dh-")
+// Theme: White + Blue — elevated, production-grade visual treatment
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-primary-soft: rgba(102, 126, 234, 0.08);
+$color-bg-light: #f7fafc;
+$color-bg-page: #f4f6fb;
+
+$color-text: #1a202c;
+$color-text-muted: #64748b;
+$color-text-faint: #94a3b8;
+$color-border: #e6eaf1;
+$color-border-soft: #eef1f7;
+
+$color-success: #38a169;
+$color-warning: #dd6b20;
+$color-danger: #e53e3e;
+$color-neutral: #718096;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-full: 999px;
+$transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+
+@mixin elevation-1 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+@mixin elevation-2 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 8px 24px rgba(102, 126, 234, 0.08),
+        0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.dh-main {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: $font-body;
+    color: $color-text;
+    background-color: $color-bg-page;
+    padding: 32px 24px 72px;
+    overflow-x: hidden;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------
+.dh-header {
+    margin-bottom: 28px;
+}
+
+.dh-pageTitle {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: $font-heading;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: $color-black;
+    margin: 0 0 4px;
+
+    svg {
+        color: $color-primary;
+        font-size: 20px;
+    }
+}
+
+.dh-pageSubtitle {
+    font-size: 13.5px;
+    color: $color-text-muted;
+    margin: 0;
+}
+
+// ---------------------------------------------------------------------
+// Section shell (shared)
+// ---------------------------------------------------------------------
+.dh-section {
+    margin-bottom: 30px;
+}
+
+.dh-sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0 0 14px;
+
+    svg {
+        color: $color-primary;
+        font-size: 14px;
+    }
+}
+
+.dh-sectionHeaderRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+
+    .dh-sectionTitle {
+        margin-bottom: 0;
+    }
+}
+
+.dh-viewAllLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: $font-heading;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-sm;
+    padding: 7px 13px;
+    text-decoration: none;
+    transition: background-color $transition-fast, gap $transition-fast;
+
+    svg {
+        font-size: 11px;
+        transition: transform $transition-fast;
+    }
+
+    &:hover {
+        background-color: rgba(102, 126, 234, 0.16);
+
+        svg {
+            transform: translateX(2px);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------
+// Overview stat cards
+// ---------------------------------------------------------------------
+.dh-overviewGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+.dh-overviewCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    padding: 18px 20px;
+    @include elevation-2;
+    transition: transform $transition-fast, box-shadow $transition-fast;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.dh-overviewIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-sm;
+    background-color: $color-primary-soft;
+    color: $color-primary;
+    font-size: 15px;
+}
+
+.dh-overviewValue {
+    font-family: $font-heading;
+    font-size: 24px;
+    font-weight: 700;
+    color: $color-black;
+    letter-spacing: -0.01em;
+}
+
+.dh-overviewLabel {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: $color-text-muted;
+}
+
+// ---------------------------------------------------------------------
+// Two-column grid (Deliverability + Engagement)
+// ---------------------------------------------------------------------
+.dh-twoColGrid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.dh-panel {
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    padding: 22px;
+    @include elevation-2;
+}
+
+.dh-metricRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    &--two {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.dh-metricItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    padding: 10px 6px;
+    background-color: $color-bg-light;
+    border-radius: $radius-md;
+}
+
+.dh-metricIcon {
+    color: $color-primary;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.dh-metricValue {
+    font-family: $font-heading;
+    font-size: 22px;
+    font-weight: 700;
+    color: $color-black;
+
+    &--success {
+        color: $color-success;
+    }
+
+    &--danger {
+        color: $color-danger;
+    }
+
+    &--primary {
+        color: $color-primary;
+    }
+}
+
+.dh-metricLabel {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: $color-text-muted;
+}
+
+.dh-warningStack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.dh-warningBanner {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #9c4221;
+    background-color: #fffaf0;
+    border: 1px solid #feebc8;
+    border-radius: $radius-sm;
+    padding: 10px 13px;
+
+    svg {
+        flex-shrink: 0;
+        margin-top: 1px;
+        color: $color-warning;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Suppression breakdown
+// ---------------------------------------------------------------------
+.dh-suppressionRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dh-suppressionPill {
+    font-family: $font-heading;
+    font-size: 12.5px;
+    font-weight: 600;
+    border-radius: $radius-full;
+    padding: 8px 16px;
+
+    &--danger {
+        color: $color-danger;
+        background-color: rgba(229, 62, 62, 0.1);
+    }
+
+    &--neutral {
+        color: $color-neutral;
+        background-color: rgba(113, 128, 150, 0.1);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Recent campaigns table
+// ---------------------------------------------------------------------
+.dh-tableWrapper {
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    @include elevation-2;
+}
+
+.dh-tableWrapper table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $color-bg-light;
+
+        th {
+            text-align: left;
+            font-family: $font-heading;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $color-text-faint;
+            padding: 13px 20px;
+            border-bottom: 1px solid $color-border-soft;
+        }
+    }
+
+    tbody tr {
+        transition: background-color $transition-fast;
+
+        &:hover {
+            background-color: #fafbfe;
+        }
+
+        &:not(:last-child) td {
+            border-bottom: 1px solid $color-border-soft;
+        }
+    }
+
+    td {
+        font-size: 13.5px;
+        color: $color-text;
+        padding: 13px 20px;
+        vertical-align: middle;
+    }
+}
+
+.dh-nameCell {
+    font-weight: 600;
+    color: $color-black;
+}
+
+.dh-statusBadge {
+    display: inline-flex;
+    align-items: center;
+    font-family: $font-heading;
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 4px 11px;
+    border-radius: $radius-full;
+
+    &.dh-status--draft {
+        color: $color-neutral;
+        background-color: rgba(113, 128, 150, 0.12);
+    }
+
+    &.dh-status--sending {
+        color: $color-warning;
+        background-color: rgba(221, 107, 32, 0.12);
+    }
+
+    &.dh-status--sent {
+        color: $color-success;
+        background-color: rgba(56, 161, 105, 0.12);
+    }
+
+    &.dh-status--failed {
+        color: $color-danger;
+        background-color: rgba(229, 62, 62, 0.12);
+    }
+
+    &.dh-status--default {
+        color: $color-primary;
+        background-color: $color-primary-soft;
+    }
+}
+
+.dh-viewBtn {
+    display: inline-flex;
+    align-items: center;
+    font-family: $font-heading;
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-sm;
+    padding: 6px 13px;
+    text-decoration: none;
+    transition: background-color $transition-fast;
+
+    &:hover {
+        background-color: rgba(102, 126, 234, 0.16);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Loading / Empty states
+// ---------------------------------------------------------------------
+.dh-loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 90px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-1;
+}
+
+.dh-loadingSpinner {
+    width: 38px;
+    height: 38px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: dh-spin 0.8s linear infinite;
+}
+
+@keyframes dh-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.dh-emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 60px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+    text-align: center;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-1;
+
+    &--inline {
+        padding: 40px 20px;
+        border: 1.5px dashed $color-border;
+        box-shadow: none;
+    }
+}
+
+.dh-emptyIcon {
+    font-size: 24px;
+    color: $color-danger;
+    opacity: 0.7;
+}
+
+.dh-emptyState--inline .dh-emptyIcon {
+    color: $color-primary;
+    opacity: 0.6;
+}
+
+// ---------------------------------------------------------------------
+// Tablet
+// ---------------------------------------------------------------------
+@media (max-width: 1000px) {
+    .dh-main {
+        padding: 26px 20px 60px;
+    }
+
+    .dh-twoColGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dh-overviewGrid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .dh-overviewCard {
+        padding: 15px 16px;
+    }
+
+    .dh-overviewValue {
+        font-size: 20px;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile
+// ---------------------------------------------------------------------
+@media (max-width: 600px) {
+    .dh-main {
+        padding: 20px 14px 48px;
+    }
+
+    .dh-pageTitle {
+        font-size: 21px;
+    }
+
+    .dh-overviewGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dh-metricRow,
+    .dh-metricRow--two {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dh-panel {
+        padding: 18px;
+    }
+
+    .dh-sectionHeaderRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    // Convert the recent-campaigns table into stacked cards
+    .dh-tableWrapper table,
+    .dh-tableWrapper thead,
+    .dh-tableWrapper tbody,
+    .dh-tableWrapper th,
+    .dh-tableWrapper td,
+    .dh-tableWrapper tr {
+        display: block;
+        width: 100%;
+    }
+
+    .dh-tableWrapper thead {
+        display: none;
+    }
+
+    .dh-tableWrapper tbody tr {
+        padding: 12px 16px;
+    }
+
+    .dh-tableWrapper td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 7px 0;
+        text-align: right;
+
+        &::before {
+            content: attr(data-label);
+            font-family: $font-heading;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $color-text-faint;
+            text-align: left;
+        }
+
+        &:last-child {
+            justify-content: flex-end;
+
+            &::before {
+                content: "";
+            }
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    .dh-overviewGrid {
+        grid-template-columns: 1fr;
+    }
+}

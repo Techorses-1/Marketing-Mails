@@ -1,0 +1,467 @@
+// ==========================================================================
+// ListsOverview.scss
+// Scoped styles for the ListsOverview page (all classes prefixed "lo-")
+// Theme: White + Blue — elevated, production-grade visual treatment
+// Fonts: Inter (body), Rubik (headings/buttons), Poppins (fallback)
+// ==========================================================================
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-primary: #667eea;
+$color-primary-hover: #5468d4;
+$color-primary-soft: rgba(102, 126, 234, 0.08);
+$color-bg-light: #f7fafc;
+$color-bg-page: #f4f6fb;
+
+$color-text: #1a202c;
+$color-text-muted: #64748b;
+$color-text-faint: #94a3b8;
+$color-border: #e6eaf1;
+$color-border-soft: #eef1f7;
+
+$font-heading: "Rubik", "Poppins", sans-serif;
+$font-body: "Inter", "Poppins", sans-serif;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-full: 999px;
+
+$transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+
+@mixin elevation-1 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+@mixin elevation-2 {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 8px 24px rgba(102, 126, 234, 0.08),
+        0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.lo-main {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: $font-body;
+    color: $color-text;
+    background-color: $color-bg-page;
+    padding: 32px 24px 72px;
+    overflow-x: hidden;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------
+.lo-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.lo-headerText {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lo-pageTitle {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: $font-heading;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: $color-black;
+    margin: 0;
+
+    svg {
+        color: $color-primary;
+        font-size: 20px;
+    }
+}
+
+.lo-pageSubtitle {
+    font-size: 13.5px;
+    color: $color-text-muted;
+    margin: 0;
+}
+
+.lo-createToggleBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary 0%, #7c6cf0 55%, #764ba2 100%);
+    border: none;
+    border-radius: $radius-md;
+    padding: 12px 22px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.35);
+    transition: transform $transition-fast, box-shadow $transition-fast, background $transition-fast;
+
+    &:hover {
+        transform: translateY(-1.5px);
+        box-shadow: 0 8px 22px rgba(102, 126, 234, 0.42);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &--active {
+        background: $color-white;
+        color: $color-text-muted;
+        box-shadow: $color-border-soft 0 0 0 1.5px;
+
+        &:hover {
+            color: #e53e3e;
+            box-shadow: rgba(229, 62, 62, 0.35) 0 0 0 1.5px;
+            transform: none;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------
+// Create form wrapper (toggled)
+// ---------------------------------------------------------------------
+.lo-createFormWrapper {
+    margin-bottom: 28px;
+    animation: lo-fadeSlideIn 0.28s ease-out;
+}
+
+@keyframes lo-fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Table section
+// ---------------------------------------------------------------------
+.lo-tableSection {
+    margin-top: 8px;
+}
+
+.lo-tableSectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.lo-tableSectionTitle {
+    font-family: $font-heading;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0;
+}
+
+.lo-tableCount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    font-family: $font-heading;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-full;
+}
+
+.lo-tableWrapper {
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    @include elevation-2;
+}
+
+.lo-tableWrapper table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $color-bg-light;
+
+        th {
+            text-align: left;
+            font-family: $font-heading;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $color-text-faint;
+            padding: 15px 22px;
+            border-bottom: 1px solid $color-border-soft;
+        }
+    }
+
+    tbody tr {
+        transition: background-color $transition-fast;
+
+        &:hover {
+            background-color: #fafbfe;
+        }
+
+        &:not(:last-child) td {
+            border-bottom: 1px solid $color-border-soft;
+        }
+    }
+
+    td {
+        font-size: 14px;
+        color: $color-text;
+        padding: 16px 22px;
+        vertical-align: middle;
+    }
+}
+
+.lo-nameCell {
+    font-weight: 600;
+    color: $color-black;
+}
+
+.lo-descCell {
+    color: $color-text-muted;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lo-contactCount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    font-family: $font-heading;
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-full;
+    padding: 4px 11px;
+}
+
+.lo-viewBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: $font-heading;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: $color-primary-soft;
+    border-radius: $radius-sm;
+    padding: 8px 14px;
+    text-decoration: none;
+    transition: background-color $transition-fast, transform $transition-fast;
+
+    &:hover {
+        background-color: rgba(102, 126, 234, 0.16);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Loading state
+// ---------------------------------------------------------------------
+.lo-loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 70px 20px;
+    color: $color-text-muted;
+    font-size: 14px;
+    background-color: $color-white;
+    border: 1px solid $color-border-soft;
+    border-radius: $radius-lg;
+    @include elevation-1;
+}
+
+.lo-loadingSpinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: lo-spin 0.8s linear infinite;
+}
+
+@keyframes lo-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Empty state
+// ---------------------------------------------------------------------
+.lo-emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 64px 24px;
+    text-align: center;
+    background-color: $color-white;
+    border: 1.5px dashed $color-border;
+    border-radius: $radius-lg;
+}
+
+.lo-emptyIconWrap {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $color-primary-soft, rgba(118, 75, 162, 0.08));
+    margin-bottom: 6px;
+}
+
+.lo-emptyIcon {
+    font-size: 22px;
+    color: $color-primary;
+}
+
+.lo-emptyTitle {
+    font-family: $font-heading;
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-black;
+    margin: 0;
+}
+
+.lo-emptyText {
+    font-size: 13.5px;
+    color: $color-text-muted;
+    margin: 0 0 10px;
+    max-width: 320px;
+}
+
+.lo-emptyCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-heading;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $color-white;
+    background: linear-gradient(135deg, $color-primary, #764ba2);
+    border: none;
+    border-radius: $radius-md;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+    transition: transform $transition-fast, box-shadow $transition-fast;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.38);
+    }
+}
+
+// ---------------------------------------------------------------------
+// Tablet
+// ---------------------------------------------------------------------
+@media (max-width: 900px) {
+    .lo-main {
+        padding: 24px 18px 56px;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Mobile
+// ---------------------------------------------------------------------
+@media (max-width: 640px) {
+    .lo-main {
+        padding: 18px 14px 44px;
+    }
+
+    .lo-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .lo-createToggleBtn {
+        justify-content: center;
+    }
+
+    .lo-tableWrapper table,
+    .lo-tableWrapper thead,
+    .lo-tableWrapper tbody,
+    .lo-tableWrapper th,
+    .lo-tableWrapper td,
+    .lo-tableWrapper tr {
+        display: block;
+        width: 100%;
+    }
+
+    .lo-tableWrapper thead {
+        display: none;
+    }
+
+    .lo-tableWrapper tbody tr {
+        padding: 14px 18px;
+    }
+
+    .lo-tableWrapper td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+        text-align: right;
+
+        &::before {
+            content: attr(data-label);
+            font-family: $font-heading;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $color-text-faint;
+            text-align: left;
+        }
+    }
+
+    .lo-descCell {
+        max-width: 60%;
+        white-space: normal;
+    }
+}

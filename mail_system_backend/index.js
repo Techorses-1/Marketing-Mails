@@ -16,6 +16,7 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
+            "https://marketingmails.techorses.com",
         ],
         credentials: true,
     })

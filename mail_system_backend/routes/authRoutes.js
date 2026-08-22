@@ -10,8 +10,8 @@ const setTokenCookie = (res, token) => {
     res.cookie('token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        // sameSite: 'strict',
-        sameSite: 'none',
+        sameSite: 'strict',
+        // sameSite: 'none',
         maxAge: 10 * 60 * 60 * 1000
     });
 };
@@ -213,8 +213,8 @@ router.post("/logout", async (req, res) => {
         res.clearCookie('token', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            // sameSite: 'strict',
-            sameSite: 'none'
+            sameSite: 'strict',
+            // sameSite: 'none'
         });
 
         await logSuccess({

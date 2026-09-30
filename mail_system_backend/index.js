@@ -54,7 +54,7 @@ app.use('/dashboard', dashboardRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-    res.send("Bulk Email System is Running OKk! 📧");
+    res.send("New Bulk Email System is Running OKk! 📧");
 });
 
 const PORT = process.env.PORT || 5000;
